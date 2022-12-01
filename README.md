@@ -6,3 +6,6 @@ A SIM900A GSM module is also installed to send an SMS alert. A panic button is i
 
 #### Block Diagram:
 ![Block Diagram](https://github.com/VPraharsha03/Remote_Health_Monitoring_System/blob/main/Block.png?raw=true)
+
+#### Flow Chart:
+![Flow Chart](https://github.com/VPraharsha03/Remote_Health_Monitoring_System/blob/main/Flow_Chart.png?raw=true)
