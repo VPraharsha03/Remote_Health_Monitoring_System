@@ -47,40 +47,45 @@ void setup()
 void loop()
 {
   if (Serial.available()>0)
-   switch(Serial.read())
   {
-    case 's':
-      SendMessage();
-      break;
-    case 'r':
-      RecieveMessage();
-      break;
+    switch(Serial.read())
+    {
+      case 's':
+        SendMessage();
+        break;
+      case 'r':
+        RecieveMessage();
+        break;
+    }
   }
 
- if (mySerial.available()>0)
+ if (mySerial.available() > 0)
+ {
    Serial.write(mySerial.read());
 
-    // Make sure to call update as fast as possible
-    pox.update();
-    if (millis() - tsLastReport > REPORTING_PERIOD_MS) {
-        //Serial.print("Heart rate:");
-        Serial.print(pox.getHeartRate());
-        Serial.print("bpm / SpO2:");
-        Serial.print(pox.getSpO2());
-        Serial.println("%");
-        int temp_adc_val;
-  float temp_val;
-  float tempf;
-  temp_adc_val = analogRead(lm35_pin);  /* Read Temperature */
-  temp_val = (temp_adc_val * 4.88); /* Convert adc value to equivalent voltage */
-  temp_val = (temp_val/10); /* LM35 gives output of 10mv/°C */
-  Serial.print("Temperature = ");
-  Serial.print(temp_val);
-  Serial.print(" Degree Celsius\n"); 
-  tempf=( temp_val *1.8)+32; // Converting to Fahrenheit 
-  Serial.print("Fahrenheit ");
-  Serial.println(tempf);
-        tsLastReport = millis();
+   // Make sure to call update as fast as possible
+   pox.update();
+   if (millis() - tsLastReport > REPORTING_PERIOD_MS) 
+   { 
+     //Serial.print("Heart rate:");
+     Serial.print(pox.getHeartRate());
+     Serial.print("bpm / SpO2:");
+     Serial.print(pox.getSpO2());
+     Serial.println("%");
+     int temp_adc_val;
+     float temp_val;
+     float tempf;
+     temp_adc_val = analogRead(lm35_pin);  /* Read Temperature */
+     temp_val = (temp_adc_val * 4.88); /* Convert adc value to equivalent voltage */
+     temp_val = (temp_val/10); /* LM35 gives output of 10mv/°C */
+     Serial.print("Temperature = ");
+     Serial.print(temp_val);
+     Serial.print(" Degree Celsius\n"); 
+     tempf = ( temp_val * 1.8 ) + 32; // Converting to Fahrenheit 
+     Serial.print("Fahrenheit ");
+     Serial.println(tempf);
+     tsLastReport = millis();
+   }
 
   if(temp_val > 37.5)
   {
@@ -152,8 +157,8 @@ void loop()
   {
     digitalWrite(led,LOW);
   }
-  }
-  delay(2000);
+ }
+ delay(2000);
 }
 
 void SendMessage()
