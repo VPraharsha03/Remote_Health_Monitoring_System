@@ -160,13 +160,3 @@ void loop()
  }
  delay(2000);
 }
-
-void SendMessage()
-{
-
-}
-
-void RecieveMessage()
-{
-  
-}
